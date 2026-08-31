@@ -1,0 +1,107 @@
+---
+import '../styles/global.css';
+import '@fontsource/space-grotesk/latin-500.css';
+import '@fontsource/space-grotesk/latin-700.css';
+import '@fontsource/ibm-plex-sans/latin-400.css';
+import '@fontsource/ibm-plex-sans/latin-500.css';
+
+const SITE = 'https://nelodev.ee';
+const EMAIL = 'info@nelodev.ee';
+const MAILTO = 'mailto:info@nelodev.ee?subject=NELOdev%20project%20enquiry';
+const TITLE = 'NELOdev \u2014 Django and Python web development for business applications.';
+const DESCRIPTION = 'Focused backend work, APIs, integrations, and data-focused web applications.';
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{TITLE}</title>
+    <meta name="description" content={DESCRIPTION} />
+    <link rel="canonical" href={`${SITE}/`} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="NELOdev" />
+    <meta property="og:title" content={TITLE} />
+    <meta property="og:description" content={DESCRIPTION} />
+    <meta property="og:url" content={`${SITE}/`} />
+    <meta property="og:image" content={`${SITE}/og-image.png`} />
+    <meta property="og:locale" content="en_US" />
+    <meta name="theme-color" content="#F4F7F2" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+
+    <header class="site-header">
+      <div class="container site-header__inner">
+        <a class="wordmark" href="#hero">NELOdev</a>
+        <nav aria-label="Main navigation">
+          <ul class="site-nav">
+            <li><a href="#services">Services</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <section id="hero" class="hero">
+        <div class="container">
+          <h1>Django and Python web development for business applications.</h1>
+          <p class="hero__lede">Focused backend work, APIs, integrations, and data-focused web applications.</p>
+          <a class="cta" href={MAILTO}>Discuss a project</a>
+        </div>
+      </section>
+
+      <section id="services" class="section">
+        <div class="container">
+          <h2 class="section__heading">Services</h2>
+          <ul class="services">
+            <li class="service">
+              <h3>Django backend development.</h3>
+              <p>Build and extend backend functionality for business web applications.</p>
+            </li>
+            <li class="service">
+              <h3>REST APIs and integrations.</h3>
+              <p>Design and implement Python and Django APIs that connect services and support structured workflows.</p>
+            </li>
+            <li class="service">
+              <h3>Data-focused web applications.</h3>
+              <p>Create Django-based interfaces for structured data, workflows, and internal tools.</p>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="about" class="section">
+        <div class="container container--narrow">
+          <h2 class="section__heading">About</h2>
+          <p>NELOdev focuses on Django and Python web development for business applications.</p>
+          <p>The offer is centered on backend functionality, APIs, integrations, and data-focused web applications.</p>
+        </div>
+      </section>
+
+      <section id="contact" class="section">
+        <div class="container container--narrow">
+          <h2 class="section__heading">Have a Django or Python web project to discuss?</h2>
+          <p>Send a short note with what you are building, what is blocked, and what help you need.</p>
+          <div class="contact-actions">
+            <a class="cta" href={MAILTO}>Discuss a project</a>
+            <a class="contact-email" href={`mailto:${EMAIL}`}>{EMAIL}</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container site-footer__inner">
+        <span class="wordmark">NELOdev</span>
+        <p class="site-footer__meta">
+          <a href={`mailto:${EMAIL}`}>{EMAIL}</a>
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>
