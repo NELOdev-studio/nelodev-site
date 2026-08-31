@@ -1,0 +1,20 @@
+{
+  "name": "nelodev-site",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "NELOdev public website — static Astro one-page MVP.",
+  "scripts": {
+    "prebuild": "node scripts/generate-assets.mjs",
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "validate": "node scripts/validate.mjs",
+    "test": "npm run build && npm run validate"
+  },
+  "dependencies": {
+    "@fontsource/ibm-plex-sans": "^5.3.0",
+    "@fontsource/space-grotesk": "^5.3.0",
+    "astro": "^7.2.9"
+  }
+}
