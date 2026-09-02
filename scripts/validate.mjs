@@ -104,7 +104,7 @@ check('all case images have alt text', caseImages.every((image) => /\balt="[^"]+
 const caseMediaFrames = (html.match(/class="[^"]*\bcase-gallery__media\b[^"]*"/g) || []).length;
 check('five result screenshots use aligned media frames', caseMediaFrames === 5, `count=${caseMediaFrames}`);
 const ctaOptions = (html.match(/class="[^"]*\bcta-option\b[^"]*"/g) || []).length;
-check('five temporary CTA color options present', ctaOptions === 5, `count=${ctaOptions}`);
+check('temporary CTA color options removed', ctaOptions === 0, `count=${ctaOptions}`);
 
 const REQUIRED_STRINGS = [
   'Django and Python web development for business applications.',
@@ -137,11 +137,6 @@ const REQUIRED_STRINGS = [
   'The offer is centered on backend functionality, APIs, integrations, and data-focused web applications.',
   'Have a Django or Python web project to discuss?',
   'Send a short note with what you are building, what is blocked, and what help you need.',
-  'Discuss a project',
-  'Discuss a project',
-  'Discuss a project',
-  'Discuss a project',
-  'Discuss a project',
   'info@nelodev.ee',
 ];
 for (const s of REQUIRED_STRINGS) {
@@ -201,11 +196,6 @@ const APPROVED_VISIBLE_TEXT = [
   'Send a short note with what you are building, what is blocked, and what help you need.',
   'Discuss a project',
   'info@nelodev.ee',
-  'Discuss a project',
-  'Discuss a project',
-  'Discuss a project',
-  'Discuss a project',
-  'Discuss a project',
   'NELOdev',
   'info@nelodev.ee',
 ].join(' ');
@@ -359,6 +349,8 @@ check(
   'workflow diagram image has muted frame and soft shadow',
   /\.case-study__diagram-media\{[^}]*border:1px solid var\(--color-muted\)[^}]*box-shadow:var\(--shadow-case\)/.test(css)
 );
+check('CTA uses Deep Teal with white text', /--color-signal\s*:\s*#1c6e8c/i.test(css) && /\.cta\{[^}]*color:var\(--color-cta-text\)/.test(css));
+check('CTA focus outline uses the CTA text color', /\.cta:focus-visible\{[^}]*outline-color:var\(--color-cta-text\)/.test(css));
 
 const letterSpacingDecls = (css.match(/letter-spacing/g) || []).length;
 const letterSpacingZero = (css.match(/letter-spacing\s*:\s*0\b/g) || []).length;
@@ -392,8 +384,9 @@ check(
 );
 
 function paletteHex(name) {
-  const m = new RegExp(`--color-${name}\\s*:\\s*#([0-9a-f]{6})`, 'i').exec(css);
-  return m ? m[1] : null;
+  const m = new RegExp(`--color-${name}\\s*:\\s*#([0-9a-f]{6}|[0-9a-f]{3})`, 'i').exec(css);
+  if (!m) return null;
+  return m[1].length === 3 ? m[1].split('').map((value) => value + value).join('') : m[1];
 }
 function luminance(hex) {
   const rgb = hex.match(/[0-9a-f]{2}/gi).map((v) => parseInt(v, 16) / 255);
@@ -410,7 +403,7 @@ const WCAG_PAIRS = [
   ['muted', 'surface'],
   ['blue', 'surface'],
   ['focus', 'surface'],
-  ['ink', 'signal'],
+  ['cta-text', 'signal'],
 ];
 for (const [fg, bg] of WCAG_PAIRS) {
   const fgHex = paletteHex(fg);
