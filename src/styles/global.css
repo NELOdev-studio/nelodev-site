@@ -311,6 +311,7 @@ a:hover {
 
 .case-gallery__overview {
   grid-column: 1 / -1;
+  margin-inline: auto;
   max-width: 760px;
 }
 
