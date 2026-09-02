@@ -15,6 +15,7 @@ const DESCRIPTION = 'Focused backend work, APIs, integrations, and data-focused 
 const CANONICAL = 'https://nelodev.ee/';
 const APPROVED_MAILTO = 'mailto:info@nelodev.ee?subject=NELOdev%20project%20enquiry';
 const PLAIN_MAILTO = 'mailto:info@nelodev.ee';
+const APPROVED_GITHUB = 'https://github.com/NELOdev-studio/slotbook';
 
 const passed = [];
 const failed = [];
@@ -33,10 +34,10 @@ const html = readFileSync(join(dist, 'index.html'), 'utf8');
 // ---- Structure ----
 const sectionIds = [...html.matchAll(/<section\b[^>]*\bid\s*=\s*"([^"]+)"/gi)].map((m) => m[1]);
 const sectionCount = (html.match(/<section\b/gi) || []).length;
-check('exactly four section elements', sectionCount === 4, `count=${sectionCount}`);
+check('exactly five section elements', sectionCount === 5, `count=${sectionCount}`);
 check(
-  'section ids in order: hero, services, about, contact',
-  JSON.stringify(sectionIds) === JSON.stringify(['hero', 'services', 'about', 'contact']),
+  'section ids in order: hero, services, work, about, contact',
+  JSON.stringify(sectionIds) === JSON.stringify(['hero', 'services', 'work', 'about', 'contact']),
   sectionIds.join(',')
 );
 
@@ -52,7 +53,7 @@ const allIds = [...html.matchAll(/\bid\s*=\s*"([^"]+)"/gi)].map((m) => m[1]);
 const duplicateIds = [...new Set(allIds.filter((id, i) => allIds.indexOf(id) !== i))];
 check('no duplicate id attributes', duplicateIds.length === 0, duplicateIds.join(', '));
 
-for (const id of ['services', 'about', 'contact']) {
+for (const id of ['services', 'work', 'about', 'contact']) {
   check(`header nav links to #${id}`, html.includes(`href="#${id}"`));
 }
 check('wordmark links to #hero', html.includes('href="#hero"'));
@@ -65,12 +66,12 @@ const h1Text = /<h1\b[^>]*>([\s\S]*?)<\/h1>/i.exec(html)?.[1]?.trim() ?? '';
 check('H1 uses exact approved copy', h1Text === 'Django and Python web development for business applications.', h1Text.slice(0, 60));
 
 const h2Count = (html.match(/<h2\b/gi) || []).length;
-check('exactly three H2 elements', h2Count === 3, `count=${h2Count}`);
+check('exactly four H2 elements', h2Count === 4, `count=${h2Count}`);
 
 const h2Texts = [...html.matchAll(/<h2\b[^>]*>([^<]*)<\/h2>/gi)].map((m) => m[1].trim());
 check(
-  'H2 texts in order: Services, About, contact question',
-  JSON.stringify(h2Texts) === JSON.stringify(['Services', 'About', 'Have a Django or Python web project to discuss?']),
+  'H2 texts in order: Services, SlotBook, About, contact question',
+  JSON.stringify(h2Texts) === JSON.stringify(['Services', 'SlotBook: API engineering demonstrator', 'About', 'Have a Django or Python web project to discuss?']),
   JSON.stringify(h2Texts)
 );
 
@@ -95,6 +96,11 @@ check('heading levels never skip', !headingSkip, headingLevels.join(','));
 // ---- Approved copy ----
 const serviceItems = (html.match(/class="service"/g) || []).length;
 check('exactly three service items', serviceItems === 3, `count=${serviceItems}`);
+const caseFigures = (html.match(/<figure\b/gi) || []).length;
+check('exactly seven case figures', caseFigures === 7, `count=${caseFigures}`);
+const caseImages = [...html.matchAll(/<img\b[^>]*>/gi)].map((m) => m[0]);
+check('exactly seven case images', caseImages.length === 7, `count=${caseImages.length}`);
+check('all case images have alt text', caseImages.every((image) => /\balt="[^"]+"/.test(image)));
 
 const REQUIRED_STRINGS = [
   'Django and Python web development for business applications.',
@@ -106,6 +112,23 @@ const REQUIRED_STRINGS = [
   'Design and implement Python and Django APIs that connect services and support structured workflows.',
   'Data-focused web applications.',
   'Create Django-based interfaces for structured data, workflows, and internal tools.',
+  'Selected engineering work',
+  'SlotBook: API engineering demonstrator',
+  'A self-initiated API-only reference implementation for appointment and service-slot booking, built with Django REST Framework.',
+  'The demonstrated workflow covers Provider-owned services and time slots, Customer availability discovery, and capacity-one booking.',
+  'OpenAPI and Swagger documentation make the API surface available for inspection.',
+  'Demonstrated workflow: HTTP 201 success followed by HTTP 409 slot_already_booked conflict.',
+  'A successful booking returns HTTP 201.',
+  'A competing request for the same slot returns HTTP 409 with the error code slot_already_booked.',
+  'SlotBook exposes a bounded API-only workflow through generated Swagger documentation.',
+  'Provider service inspection returns the owned synthetic service.',
+  'Customer availability discovery returns an available future slot.',
+  'The first booking for an available slot is confirmed with HTTP 201.',
+  'A competing request for the same slot is rejected deterministically.',
+  'The local readiness endpoint reports the demonstrator is ready.',
+  'All data shown in this demonstration is synthetic.',
+  'This is a demonstrator, not client work or a production booking product.',
+  'View the public SlotBook source repository',
   'NELOdev focuses on Django and Python web development for business applications.',
   'The offer is centered on backend functionality, APIs, integrations, and data-focused web applications.',
   'Have a Django or Python web project to discuss?',
@@ -132,6 +155,7 @@ const APPROVED_VISIBLE_TEXT = [
   'Skip to main content',
   'NELOdev',
   'Services',
+  'Work',
   'About',
   'Contact',
   'Django and Python web development for business applications.',
@@ -144,6 +168,23 @@ const APPROVED_VISIBLE_TEXT = [
   'Design and implement Python and Django APIs that connect services and support structured workflows.',
   'Data-focused web applications.',
   'Create Django-based interfaces for structured data, workflows, and internal tools.',
+  'Selected engineering work',
+  'SlotBook: API engineering demonstrator',
+  'A self-initiated API-only reference implementation for appointment and service-slot booking, built with Django REST Framework.',
+  'The demonstrated workflow covers Provider-owned services and time slots, Customer availability discovery, and capacity-one booking.',
+  'OpenAPI and Swagger documentation make the API surface available for inspection.',
+  'Demonstrated workflow: HTTP 201 success followed by HTTP 409 slot_already_booked conflict.',
+  'A successful booking returns HTTP 201.',
+  'A competing request for the same slot returns HTTP 409 with the error code slot_already_booked.',
+  'SlotBook exposes a bounded API-only workflow through generated Swagger documentation.',
+  'Provider service inspection returns the owned synthetic service.',
+  'Customer availability discovery returns an available future slot.',
+  'The first booking for an available slot is confirmed with HTTP 201.',
+  'A competing request for the same slot is rejected deterministically.',
+  'The local readiness endpoint reports the demonstrator is ready.',
+  'All data shown in this demonstration is synthetic.',
+  'This is a demonstrator, not client work or a production booking product.',
+  'View the public SlotBook source repository',
   'About',
   'NELOdev focuses on Django and Python web development for business applications.',
   'The offer is centered on backend functionality, APIs, integrations, and data-focused web applications.',
@@ -192,6 +233,7 @@ check('og:image points to local og-image.png', ogValue('image') === `${CANONICAL
 check('og:site_name NELOdev', ogValue('site_name') === 'NELOdev');
 
 check('favicon link present', /rel="icon"/.test(html));
+check('public SlotBook repository link is exact', html.includes(`href="${APPROVED_GITHUB}"`));
 
 // ---- Privacy: no forms, scripts, analytics, trackers ----
 check('no form elements', !/<form\b/i.test(html));
@@ -208,7 +250,12 @@ const hosts = [
     [...html.matchAll(/https?:\/\/([^/"'\s>)]+)/gi)].map((m) => m[1].toLowerCase()).filter((h) => !h.startsWith('nelodev.ee'))
   ),
 ];
-check('all absolute URLs are nelodev.ee only', hosts.length === 0, hosts.join(', '));
+const ALLOWED_EXTERNAL_HOSTS = new Set(['github.com']);
+check('all absolute URLs use approved hosts', hosts.every((host) => ALLOWED_EXTERNAL_HOSTS.has(host)), hosts.join(', '));
+check(
+  'no private or live-demo references',
+  !/(127\.0\.0\.1|localhost|slotbook-project|taltech|linkedin|password|secret|live demo|demo credentials|open source|MIT-licensed)/i.test(html)
+);
 
 // ---- Static crawl files ----
 const robotsPath = join(dist, 'robots.txt');
@@ -243,6 +290,23 @@ const pngWidth = pngHeaderOk ? ogPng.readUInt32BE(16) : 0;
 const pngHeight = pngHeaderOk ? ogPng.readUInt32BE(20) : 0;
 check('og-image.png has valid PNG header', pngHeaderOk);
 check('og-image.png dimensions are 1200x630', pngWidth === 1200 && pngHeight === 630, `${pngWidth}x${pngHeight}`);
+
+const CASE_ASSETS = [
+  'slotbook/workflow_diagram.svg',
+  'slotbook/01_swagger_overview.webp',
+  'slotbook/02_provider_services.webp',
+  'slotbook/03_availability_booking_201.webp',
+  'slotbook/04_booking_conflict_409.webp',
+  'slotbook/05_health_schema.webp',
+  'slotbook/06_availability_discovery_200.webp',
+];
+for (const asset of CASE_ASSETS) {
+  const assetPath = join(dist, asset);
+  check(`case asset present: ${asset}`, existsSync(assetPath) && statSync(assetPath).size > 0);
+}
+const workflowSvgPath = join(dist, 'slotbook/workflow_diagram.svg');
+const workflowSvg = existsSync(workflowSvgPath) ? readFileSync(workflowSvgPath, 'utf8') : '';
+check('workflow diagram has accessible title and description', /<title\b/i.test(workflowSvg) && /<desc\b/i.test(workflowSvg));
 
 // ---- Assets and payload ----
 function walk(dir, acc = []) {
