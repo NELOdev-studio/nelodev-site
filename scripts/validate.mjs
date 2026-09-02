@@ -101,7 +101,7 @@ check('exactly seven case figures', caseFigures === 7, `count=${caseFigures}`);
 const caseImages = [...html.matchAll(/<img\b[^>]*>/gi)].map((m) => m[0]);
 check('exactly seven case images', caseImages.length === 7, `count=${caseImages.length}`);
 check('all case images have alt text', caseImages.every((image) => /\balt="[^"]+"/.test(image)));
-const caseMediaFrames = (html.match(/class="case-gallery__media"/g) || []).length;
+const caseMediaFrames = (html.match(/class="[^"]*\bcase-gallery__media\b[^"]*"/g) || []).length;
 check('five result screenshots use aligned media frames', caseMediaFrames === 5, `count=${caseMediaFrames}`);
 
 const REQUIRED_STRINGS = [

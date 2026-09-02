@@ -9,6 +9,9 @@
   --color-muted: #53615b;
   --color-line: #c9d4cf;
   --color-focus: #1c6e8c;
+  --color-case-cool: #ebf3fb;
+  --color-case-mint: #e9f6f0;
+  --shadow-case: 0 4px 12px rgba(23, 35, 31, 0.14);
 
   --font-display: "Space Grotesk", "IBM Plex Sans", ui-sans-serif, system-ui, "Segoe UI", Arial, sans-serif;
   --font-body: "IBM Plex Sans", ui-sans-serif, system-ui, "Segoe UI", Arial, sans-serif;
@@ -319,8 +322,18 @@ a:hover {
   place-items: center;
   aspect-ratio: 16 / 9;
   overflow: hidden;
+  padding-inline: 10px;
   border: 1px solid var(--color-muted);
   background-color: var(--color-surface);
+  box-shadow: var(--shadow-case);
+}
+
+.case-gallery__media--cool {
+  background-color: var(--color-case-cool);
+}
+
+.case-gallery__media--mint {
+  background-color: var(--color-case-mint);
 }
 
 .case-gallery__overview {
@@ -328,6 +341,10 @@ a:hover {
   margin-inline: auto;
   justify-self: center;
   max-width: 760px;
+}
+
+.case-gallery__overview img {
+  box-shadow: var(--shadow-case);
 }
 
 .case-gallery img {
@@ -469,6 +486,10 @@ a:hover {
   .case-study__diagram figcaption,
   .case-gallery figcaption {
     font-size: 15px;
+  }
+
+  .case-gallery__media {
+    padding-inline: 8px;
   }
 
   .service h3 {
