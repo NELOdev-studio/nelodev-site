@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="260" viewBox="0 0 1200 260" role="img" aria-labelledby="title description">
+  <title id="title">SlotBook demonstrated booking workflow</title>
+  <desc id="description">A Provider-owned service and slot lead to Customer availability discovery, a first booking with HTTP 201, and a competing booking with HTTP 409 slot_already_booked.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#475569"/>
+    </marker>
+    <style>
+      .title { font: 700 24px Arial, sans-serif; fill: #172033; }
+      .label { font: 700 16px Arial, sans-serif; fill: #172033; }
+      .detail { font: 400 14px Arial, sans-serif; fill: #475569; }
+      .box { stroke: #64748b; stroke-width: 2; }
+      .arrow { stroke: #475569; stroke-width: 3; fill: none; marker-end: url(#arrow); }
+    </style>
+  </defs>
+  <rect width="1200" height="260" fill="#f8fafc"/>
+  <text x="40" y="42" class="title">SlotBook demonstrated workflow</text>
+
+  <rect x="40" y="92" width="210" height="100" rx="14" fill="#e0f2fe" class="box"/>
+  <text x="145" y="126" text-anchor="middle" class="label">Provider-owned</text>
+  <text x="145" y="150" text-anchor="middle" class="label">service / slot</text>
+  <text x="145" y="174" text-anchor="middle" class="detail">Ownership scope</text>
+
+  <path d="M 250 142 L 300 142" class="arrow"/>
+
+  <rect x="300" y="92" width="220" height="100" rx="14" fill="#ede9fe" class="box"/>
+  <text x="410" y="126" text-anchor="middle" class="label">Customer</text>
+  <text x="410" y="150" text-anchor="middle" class="label">availability discovery</text>
+  <text x="410" y="174" text-anchor="middle" class="detail">Available future slots</text>
+
+  <path d="M 520 142 L 570 142" class="arrow"/>
+
+  <rect x="570" y="92" width="220" height="100" rx="14" fill="#dcfce7" class="box"/>
+  <text x="680" y="126" text-anchor="middle" class="label">First booking</text>
+  <text x="680" y="150" text-anchor="middle" class="label">HTTP 201</text>
+  <text x="680" y="174" text-anchor="middle" class="detail">Confirmed booking</text>
+
+  <path d="M 790 142 L 840 142" class="arrow"/>
+
+  <rect x="840" y="92" width="320" height="100" rx="14" fill="#fee2e2" class="box"/>
+  <text x="1000" y="126" text-anchor="middle" class="label">Competing booking</text>
+  <text x="1000" y="150" text-anchor="middle" class="label">HTTP 409</text>
+  <text x="1000" y="174" text-anchor="middle" class="detail">slot_already_booked</text>
+</svg>

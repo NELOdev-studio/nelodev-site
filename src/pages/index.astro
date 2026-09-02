@@ -39,6 +39,7 @@ const DESCRIPTION = 'Focused backend work, APIs, integrations, and data-focused 
         <nav aria-label="Main navigation">
           <ul class="site-nav">
             <li><a href="#services">Services</a></li>
+            <li><a href="#work">Work</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#contact">Contact</a></li>
           </ul>
@@ -72,6 +73,127 @@ const DESCRIPTION = 'Focused backend work, APIs, integrations, and data-focused 
               <p>Create Django-based interfaces for structured data, workflows, and internal tools.</p>
             </li>
           </ul>
+        </div>
+      </section>
+
+      <section id="work" class="section case-study" aria-labelledby="slotbook-title">
+        <div class="container">
+          <div class="case-study__intro">
+            <p class="case-study__eyebrow">Selected engineering work</p>
+            <h2 id="slotbook-title">SlotBook: API engineering demonstrator</h2>
+            <p>A self-initiated API-only reference implementation for appointment and service-slot booking, built with Django REST Framework.</p>
+            <p>The demonstrated workflow covers Provider-owned services and time slots, Customer availability discovery, and capacity-one booking.</p>
+            <p>OpenAPI and Swagger documentation make the API surface available for inspection.</p>
+          </div>
+
+          <figure class="case-study__diagram">
+            <div class="case-study__diagram-media">
+              <img
+                src="/slotbook/workflow_diagram.svg"
+                width="1200"
+                height="260"
+                alt="Diagram from a Provider-owned service and slot through Customer availability discovery to booking success and a competing-booking conflict."
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <figcaption>Demonstrated workflow: HTTP 201 success followed by HTTP 409 slot_already_booked conflict.</figcaption>
+          </figure>
+
+          <div class="case-study__proof">
+            <p>A successful booking returns HTTP 201.</p>
+            <p>A competing request for the same slot returns HTTP 409 with the error code slot_already_booked.</p>
+          </div>
+
+          <div class="case-gallery" aria-label="SlotBook API evidence">
+            <figure class="case-gallery__overview">
+              <img
+                src="/slotbook/01_swagger_overview.webp"
+                width="939"
+                height="900"
+                alt="Swagger UI overview showing the SlotBook API title, OpenAPI link, authentication, booking, health, and Provider operation groups."
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption>SlotBook exposes a bounded API-only workflow through generated Swagger documentation.</figcaption>
+            </figure>
+
+            <figure>
+              <div class="case-gallery__media case-gallery__media--cool">
+                <img
+                  src="/slotbook/02_provider_services.webp"
+                  width="842"
+                  height="450"
+                  alt="Swagger response table showing one synthetic Provider service named Demo consultation and HTTP 200."
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <figcaption>Provider service inspection returns the owned synthetic service.</figcaption>
+            </figure>
+
+            <figure>
+              <div class="case-gallery__media case-gallery__media--cool">
+                <img
+                  src="/slotbook/06_availability_discovery_200.webp"
+                  width="842"
+                  height="478"
+                  alt="Swagger response table showing one future synthetic slot with available status and HTTP 200."
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <figcaption>Customer availability discovery returns an available future slot.</figcaption>
+            </figure>
+
+            <figure>
+              <div class="case-gallery__media case-gallery__media--mint">
+                <img
+                  src="/slotbook/03_availability_booking_201.webp"
+                  width="842"
+                  height="408"
+                  alt="Swagger response table showing a confirmed synthetic booking and HTTP 201."
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <figcaption>The first booking for an available slot is confirmed with HTTP 201.</figcaption>
+            </figure>
+
+            <figure>
+              <div class="case-gallery__media case-gallery__media--mint">
+                <img
+                  src="/slotbook/04_booking_conflict_409.webp"
+                  width="842"
+                  height="370"
+                  alt="Swagger response table showing HTTP 409 and the error code slot_already_booked."
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <figcaption>A competing request for the same slot is rejected deterministically.</figcaption>
+            </figure>
+
+            <figure>
+              <div class="case-gallery__media case-gallery__media--cool">
+                <img
+                  src="/slotbook/05_health_schema.webp"
+                  width="842"
+                  height="328"
+                  alt="Swagger response table showing HTTP 200 and the readiness body status ready."
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <figcaption>The local readiness endpoint reports the demonstrator is ready.</figcaption>
+            </figure>
+          </div>
+
+          <div class="case-study__footer">
+            <p>All data shown in this demonstration is synthetic.</p>
+            <p>This is a demonstrator, not client work or a production booking product.</p>
+            <a class="case-study__link" href="https://github.com/NELOdev-studio/slotbook" target="_blank" rel="noreferrer">View the public SlotBook source repository</a>
+          </div>
         </div>
       </section>
 
