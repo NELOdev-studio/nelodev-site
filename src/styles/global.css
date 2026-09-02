@@ -319,6 +319,7 @@ a:hover {
   place-items: center;
   aspect-ratio: 16 / 9;
   overflow: hidden;
+  border: 1px solid var(--color-muted);
   background-color: var(--color-surface);
 }
 
@@ -333,7 +334,7 @@ a:hover {
   display: block;
   width: 100%;
   height: auto;
-  border: 1px solid var(--color-line);
+  border: 1px solid var(--color-muted);
   background-color: #ffffff;
 }
 
