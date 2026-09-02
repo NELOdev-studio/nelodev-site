@@ -312,6 +312,7 @@ a:hover {
 .case-gallery__overview {
   grid-column: 1 / -1;
   margin-inline: auto;
+  justify-self: center;
   max-width: 760px;
 }
 
