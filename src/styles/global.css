@@ -277,12 +277,15 @@ a:hover {
 
 .case-study__diagram {
   margin: 48px 0 0;
+}
+
+.case-study__diagram-media {
   border: 1px solid var(--color-muted);
-  padding: 16px;
+  padding: 0px;
   box-shadow: var(--shadow-case);
 }
 
-.case-study__diagram img {
+.case-study__diagram-media img {
   display: block;
   width: 100%;
   height: auto;
@@ -375,6 +378,46 @@ a:hover {
   display: inline-block;
   margin-top: 24px;
   font-weight: 500;
+}
+
+/* Temporary visual palette for the owner review. */
+.cta-options {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 32px;
+}
+
+.cta-option {
+  width: 100%;
+  border: 0;
+  color: #ffffff;
+  cursor: default;
+}
+
+.cta-option:hover {
+  color: #ffffff;
+  box-shadow: inset 0 0 0 3px var(--color-surface);
+}
+
+.cta-option--blue-green {
+  background-color: #2f7a78;
+}
+
+.cta-option--deep-teal {
+  background-color: #1c6e8c;
+}
+
+.cta-option--forest {
+  background-color: #3f7d58;
+}
+
+.cta-option--violet {
+  background-color: #5b4b8a;
+}
+
+.cta-option--orange {
+  background-color: #b75c1d;
 }
 
 /* Contact */
@@ -470,13 +513,18 @@ a:hover {
   .case-study__diagram,
   .case-study__proof,
   .case-gallery,
-  .case-study__footer {
+  .case-study__footer,
+  .cta-options {
     margin-top: 32px;
   }
 
   .case-gallery {
     grid-template-columns: 1fr;
     gap: 24px;
+  }
+
+  .cta-options {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .case-gallery__overview {

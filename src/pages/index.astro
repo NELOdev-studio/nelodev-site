@@ -87,14 +87,16 @@ const DESCRIPTION = 'Focused backend work, APIs, integrations, and data-focused 
           </div>
 
           <figure class="case-study__diagram">
-            <img
-              src="/slotbook/workflow_diagram.svg"
-              width="1200"
-              height="260"
-              alt="Diagram from a Provider-owned service and slot through Customer availability discovery to booking success and a competing-booking conflict."
-              loading="lazy"
-              decoding="async"
-            />
+            <div class="case-study__diagram-media">
+              <img
+                src="/slotbook/workflow_diagram.svg"
+                width="1200"
+                height="260"
+                alt="Diagram from a Provider-owned service and slot through Customer availability discovery to booking success and a competing-booking conflict."
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
             <figcaption>Demonstrated workflow: HTTP 201 success followed by HTTP 409 slot_already_booked conflict.</figcaption>
           </figure>
 
@@ -210,6 +212,13 @@ const DESCRIPTION = 'Focused backend work, APIs, integrations, and data-focused 
           <div class="contact-actions">
             <a class="cta" href={MAILTO}>Discuss a project</a>
             <a class="contact-email" href={`mailto:${EMAIL}`}>{EMAIL}</a>
+          </div>
+          <div class="cta-options" aria-label="CTA colour options for review">
+            <button class="cta cta-option cta-option--blue-green" type="button" aria-label="CTA option 1, blue-green">Discuss a project</button>
+            <button class="cta cta-option cta-option--deep-teal" type="button" aria-label="CTA option 2, deep teal">Discuss a project</button>
+            <button class="cta cta-option cta-option--forest" type="button" aria-label="CTA option 3, forest green">Discuss a project</button>
+            <button class="cta cta-option cta-option--violet" type="button" aria-label="CTA option 4, deep violet">Discuss a project</button>
+            <button class="cta cta-option cta-option--orange" type="button" aria-label="CTA option 5, dark orange">Discuss a project</button>
           </div>
         </div>
       </section>

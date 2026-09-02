@@ -103,6 +103,8 @@ check('exactly seven case images', caseImages.length === 7, `count=${caseImages.
 check('all case images have alt text', caseImages.every((image) => /\balt="[^"]+"/.test(image)));
 const caseMediaFrames = (html.match(/class="[^"]*\bcase-gallery__media\b[^"]*"/g) || []).length;
 check('five result screenshots use aligned media frames', caseMediaFrames === 5, `count=${caseMediaFrames}`);
+const ctaOptions = (html.match(/class="[^"]*\bcta-option\b[^"]*"/g) || []).length;
+check('five temporary CTA color options present', ctaOptions === 5, `count=${ctaOptions}`);
 
 const REQUIRED_STRINGS = [
   'Django and Python web development for business applications.',
@@ -135,6 +137,11 @@ const REQUIRED_STRINGS = [
   'The offer is centered on backend functionality, APIs, integrations, and data-focused web applications.',
   'Have a Django or Python web project to discuss?',
   'Send a short note with what you are building, what is blocked, and what help you need.',
+  'Discuss a project',
+  'Discuss a project',
+  'Discuss a project',
+  'Discuss a project',
+  'Discuss a project',
   'info@nelodev.ee',
 ];
 for (const s of REQUIRED_STRINGS) {
@@ -194,6 +201,11 @@ const APPROVED_VISIBLE_TEXT = [
   'Send a short note with what you are building, what is blocked, and what help you need.',
   'Discuss a project',
   'info@nelodev.ee',
+  'Discuss a project',
+  'Discuss a project',
+  'Discuss a project',
+  'Discuss a project',
+  'Discuss a project',
   'NELOdev',
   'info@nelodev.ee',
 ].join(' ');
@@ -344,8 +356,8 @@ const cssFiles = files.filter((f) => f.endsWith('.css'));
 check('at least one CSS file emitted', cssFiles.length >= 1, `count=${cssFiles.length}`);
 const css = cssFiles.map((f) => readFileSync(f, 'utf8')).join('\n');
 check(
-  'workflow diagram has muted frame and soft shadow',
-  /\.case-study__diagram\{[^}]*border:1px solid var\(--color-muted\)[^}]*box-shadow:var\(--shadow-case\)/.test(css)
+  'workflow diagram image has muted frame and soft shadow',
+  /\.case-study__diagram-media\{[^}]*border:1px solid var\(--color-muted\)[^}]*box-shadow:var\(--shadow-case\)/.test(css)
 );
 
 const letterSpacingDecls = (css.match(/letter-spacing/g) || []).length;
