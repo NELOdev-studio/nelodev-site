@@ -277,8 +277,9 @@ a:hover {
 
 .case-study__diagram {
   margin: 48px 0 0;
-  border-block: 1px solid var(--color-line);
-  padding-block: 24px;
+  border: 1px solid var(--color-muted);
+  padding: 16px;
+  box-shadow: var(--shadow-case);
 }
 
 .case-study__diagram img {

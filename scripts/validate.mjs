@@ -343,6 +343,10 @@ check('gzip payload < 200 KB excluding fonts', gzipBytes < 200 * 1024, `${(gzipB
 const cssFiles = files.filter((f) => f.endsWith('.css'));
 check('at least one CSS file emitted', cssFiles.length >= 1, `count=${cssFiles.length}`);
 const css = cssFiles.map((f) => readFileSync(f, 'utf8')).join('\n');
+check(
+  'workflow diagram has muted frame and soft shadow',
+  /\.case-study__diagram\{[^}]*border:1px solid var\(--color-muted\)[^}]*box-shadow:var\(--shadow-case\)/.test(css)
+);
 
 const letterSpacingDecls = (css.match(/letter-spacing/g) || []).length;
 const letterSpacingZero = (css.match(/letter-spacing\s*:\s*0\b/g) || []).length;
